@@ -6,12 +6,57 @@
     <title>BarChart</title>
     <meta name="description" content="Bar Chart Project">
     <meta name="author" content="Erik Mackie">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css"
   </head>
 
   <body>
-    <h1>BarChart</h1>
+    <div id="header">
+      <h5>Title</h5>
+    </div>
+    <div id="mainContainer">
+        <div id="graphContainer">
+          <div id="graphInner">
+            <ul class="chart">
+              <li>
+                <span style="height:5%" title="ActionScript"></span>
+              </li>
+              <li>
+                <span style="height:70%" title="JavaScript"></span>
+              </li>
+              <li>
+                <span style="height:50%" title="CoffeScript"></span>
+              </li>
+              <li>
+                <span style="height:15%" title="HTML"></span>
+              </li>
 
-    <script src="freeSpace.js"></script>
+              <li>
+                <span style="height:25%" title="new"></span>
+              </li>
+            </ul>
+
+            <div class="gridContainer">
+              <div id="ticks">
+                <div class="tick"><p>10</p></div>
+                <div class="tick"><p>8</p></div>
+                <div class="tick"><p>6</p></div>
+                <div class="tick"><p>4</p></div>
+                <div class="tick"><p>2</p></div>
+              </div>
+            </div>
+
+        </div>
+
+      </div>
+
+
+      <div id="controlsContainer">
+        <p>two</p>
+      </div>
+    </div>
+
+    <script src="barChartProject.js"></script>
   </body>
 
   <style>
