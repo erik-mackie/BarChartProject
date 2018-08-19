@@ -7,58 +7,194 @@
     <meta name="description" content="Bar Chart Project">
     <meta name="author" content="Erik Mackie">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css"
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
 
   <body>
     <div id="header">
-      <h5>Title</h5>
+      <div id="titleMain"><h2>Chart Creator</h2></div>
+      <div id="titleSec"><h3>Create and Output Data</h3></div>
     </div>
     <div id="mainContainer">
+<!--Graph -->
         <div id="graphContainer">
-          <div id="graphInner">
-            <ul class="chart">
-              <li>
-                <span style="height:5%" title="ActionScript"></span>
-              </li>
-              <li>
-                <span style="height:70%" title="JavaScript"></span>
-              </li>
-              <li>
-                <span style="height:50%" title="CoffeScript"></span>
-              </li>
-              <li>
-                <span style="height:15%" title="HTML"></span>
-              </li>
+          <div id="titleSection">
+            <h1 id="graphTitle">A new Graph</h1>
+          </div>
+            <div id="graphInner">
+              <ul class="chart">
+                <li>
+                  <span style="height:5%" title="ActionScript" ></span>
+                </li>
+                <li>
+                  <span style="height:80%" title="JavaScript"></span>
+                </li>
+                <li>
+                  <span style="height:50%" title="CoffeScript"></span>
+                </li>
+                <li>
+                  <span style="height:15%" title="HTML"></span>
+                </li>
+                <li>
+                  <span style="height:25%" title="new"></span>
+                </li>
+              </ul>
+              <div class="gridContainer">
+                <div id="ticks">
+                  <div class="tick"><p>10</p></div>
+                  <div class="tick"><p>8</p></div>
+                  <div class="tick"><p>6</p></div>
+                  <div class="tick"><p>4</p></div>
+                  <div class="tick"><p>2</p></div>
+                </div>
+              </div>
+        </div>
+        <!-- Stacked Value Index -->
+        <div id="stackedIndexSection">
+          <div id="stackedIndexContainer">
+            <div class="indexItem">
+              <div class="colourBox"></div>
+              <p>TheNameOftheValue</p>
+            </div>
+            <div class="indexItem">
+              <div class="colourBox"></div>
+              <p>TheNameOftheValue</p>
+            </div>
+            <div class="indexItem">
+              <div class="colourBox"></div>
+              <p>TheNameOftheValue</p>
+            </div>
+          </div>
+        </div>
+      </div>
 
-              <li>
-                <span style="height:25%" title="new"></span>
+<!--Controls -->
+<!--Controls -->
+      <div id="controlsContainer">
+        <!-- Title controls -->
+        <div id="baseGraphContainer">
+          <h2>Title Controls</h2>
+          <form class="titleInputContainer">
+            <input class="titleInput" type="text" placeholder="Graph Title">
+          </form>
+          <div id="titleSecContainer">
+            <form>
+              <select id="titleSize">
+                <option value="15">small</option>
+                <option value="20">Medium</option>
+                <option value="25">Large</option>
+                <option value="30">Extra Large</option>
+              </select>
+              <input class="titleColour" type="color" name="favcolor" value="#ff0000">
+            </form>
+          </div>
+          <div id="titleControlsContainer">
+            <!-- <button id="titleAdd">Add</button> -->
+          </div>
+        </div>
+
+        <!-- modify bar collors, vaues, width -->
+        <div id="barControlsContainer">
+          <h2>Base Graph</h2>
+          <!-- Stacked Values controls -->
+          <div id="barTypesContainer">
+            <ul id="stackTypes">
+              <li class="stackValue">
+                <input class="typeInput" id="inpStacked1" type="text" placeholder="Stacked Value Type">
+                <input class="stackedColour" id="colStacked1" type="color" name="favcolor" value="#ff0000">
+                <button>add</button>
+              </li>
+              <li class="stackValue">
+                <input class="typeInput" id="inpStacked2" type="text" placeholder="Stacked Value Type">
+                <input class="stackedColour" id="colStacked2" type="color" name="favcolor" value="#ff0000">
+                <button>add</button>
+              </li>
+              <li class="stackValue">
+                <input class="typeInput" id="inpStacked3" type="text" placeholder="Stacked Value Type">
+                <input class="stackedColour" id="colStacked3" type="color" name="favcolor" value="#ff0000">
+                <button>add</button>
               </li>
             </ul>
+          </div>
+          <div id="yAxisForm">
+            <form class="w3-container">
+              <input id="yAxisUnits" type="number" placeholder="Y Axis Units Max">
+            </form>
+          </div>
+          <div id="controlsContainer1">
+            <div id='barSpacingContainer'>
+              <h3>Bar Spacing</h3>
+              <button id="lessSpace">-</button>
+              <button id="moreSpace">+</button>
+            </div>
 
-            <div class="gridContainer">
-              <div id="ticks">
-                <div class="tick"><p>10</p></div>
-                <div class="tick"><p>8</p></div>
-                <div class="tick"><p>6</p></div>
-                <div class="tick"><p>4</p></div>
-                <div class="tick"><p>2</p></div>
+            <div id="valueLocationContainer">
+              <h3>Bar Value Location</h3>
+              <select name="barValueLocation">
+                  <option value="bottom">Bottom</option>
+                  <option value="middle">Middle</option>
+                  <option value="top">Top</option>
+                </select>
+            </div>
+          </div>
+
+        </div>
+<!-- add new bar -->
+
+        <div id="newBarValueContainer">
+          <h2>Add New Bar</h2>
+          <div class="existingDropdown">
+              <button class="dropbtn">Current Bars</button>
+              <div class="dropdown-content">
+                <a href="#">Test Value</a>
               </div>
+            </div>
+          <div id="newValuesContainer">
+            <div>
+              <input id="valueName" type="text" placeholder="Value Name">
+            </div>
+            <div class="valueInput">
+              <input class="barValue" type="number" placeholder="Section Value">
+              <select name="barValueType">
+                  <option value="bottom">option 1</option>
+                  <option value="middle">option 2</option>
+                  <option value="top">option 3</option>
+                </select>
+                <button class="value control">add</button>
+            </div>
+            <div class="valueInput">
+              <input class="barValue" type="number" placeholder="Section Value">
+              <select name="barValueType">
+                  <option value="bottom">option 1</option>
+                  <option value="middle">option 2</option>
+                  <option value="top">option 3</option>
+                </select>
+                <button class="value control">add</button>
             </div>
 
         </div>
+          <button id="valuesBtn">Add</button>
+        </div>
+<!-- Process Page -->
+        <div id="masterControlsContainer">
+          <h2>Master Controls</h2>
+          <div id="masterContainer">
+            <button id="exportBtn">Export</button>
+            <button id="processBtn">Process</button>
+            <button id="clearBtn">Clear</button>
+          </div>
+        </div>
 
-      </div>
-
-
-      <div id="controlsContainer">
-        <p>two</p>
       </div>
     </div>
 
     <script src="barChartProject.js"></script>
   </body>
 
-  <style>
+
 </html>
 
+
+
+/*fix padding issues contributing too percent height issues*/

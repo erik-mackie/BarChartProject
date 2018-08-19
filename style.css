@@ -16,14 +16,35 @@ body {
 
 #header {
   width:100%;
-  height:7%;
+  height:6%;
   background-color: pink;
+
+}
+
+#titleMain {
+  float: left;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+#titleSec {
+  float: right;
+  height: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
 }
 
 #mainContainer {
   width:100%;
-  height:93%
+  height:94%;
 }
+
+
 
 #graphContainer {
   width:80%;
@@ -32,12 +53,23 @@ body {
   float:left;
   display: flex;
   justify-content: center;
+  display:block;
+}
+
+#titleSection {
+  height: 6%;
+  width: 100%;
+  margin-top: 2%;
+  font-size: 20px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #graphInner {
-  padding:30px;
-  margin: 30px;
-
+  height: 75%;
+  margin: 2% 2% 0 2%;
+  padding:0px 4% 4% 4%;
   position: relative;
 }
 
@@ -58,7 +90,7 @@ body {
   display: table-cell;
   vertical-align: bottom;
   height: 200px;
-  max-width: 800px;
+
 }
 
 .chart span {
@@ -121,12 +153,271 @@ body {
   margin: 0 0 0 0.5em;
 }
 
+#stackedIndexSection {
+  height: 8.75%;
+  width: 100%;
+  position:relative;
+}
+
+#stackedIndexContainer {
+  width: 50%;
+  height: 50%;
+  margin:0 auto;
+  background: rgba(209, 236, 250, .75);
+}
+
+.indexItem {
+  width:32.5%;
+  height:100%;
+  display: inline-block;
+
+  border-left: 1px dotted #C4C4C4;
+  border-right: 1px dotted #C4C4C4;
+  border-collapse: collapse;
+}
+
+.colourBox {
+  width: 20px;
+  height: 20px;
+  background-color: red;
+
+}
+
+.indexItem p {
+  font-size: 15px;
+}
+
 #controlsContainer {
   width:20%;
   height: 100%;
   background-color: #FFEBCD;
   float:right;
+  display: block;
+}
+
+#baseGraphContainer {
+  background-color: white;
+  margin: 6%;
+}
+
+#baseGraphContainer h2 {
+  text-align: center;
+  padding: 2%;
+}
+
+.titleInputContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.titleInput {
+  width:60%
+  height: 20px;
+  padding: 5px;
+  text-align: center;
+
+}
+
+#titleSecContainer {
+  padding: 10px;
+}
+
+#titleSecContainer form {
+  padding:5px;
+  height: 20px;
+  padding-left:18%;
+}
+
+#titleSize {
+  height: 25px;
+}
+
+.titleColour {
+  float:right;
+  margin-right:18%;
+}
+
+#yAxisForm {
+  padding: 10px;
+}
+#yAxisUnits {
+  padding: 5px;
+}
+
+#titleControlsContainer {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+#titleAdd {
+  padding: 5px;
+}
+
+#barControlsContainer {
+  background-color: white;
+  margin: 6%;
+}
+
+#barTypesContainer {
+  margin: 10px;
+}
+
+.typeInput {
+  width : 50%;
 }
 
 
+#yAxisForm {
+  display: flex;
+  justify-content: center;
 }
+
+#barControlsContainer h2 {
+  text-align: center;
+  padding: 2%;
+}
+
+#controlsContainer1 {
+  width:100%;
+  display:inline;
+  display: flex;
+  justify-content: center;
+}
+
+#barSpacingContainer {
+  margin: 10px;
+}
+
+#lessSpace {
+  padding: 5px;
+}
+
+#moreSpace {
+  padding: 5px;
+}
+
+#valueLocationContainer {
+  margin: 10px;
+}
+
+#newBarValueContainer {
+  background-color: white;
+  margin: 6%;
+  height:36%;
+}
+
+#newBarValueContainer h2 {
+  text-align: center;
+  padding: 2%;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px;
+    font-size: 15px
+    border: none;
+    cursor: pointer;
+}
+
+
+.existingDropdown {
+    position: relative;
+    display: inline-block;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+
+.existingDropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.existingDropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+#newValuesContainer {
+  background-color: #DCDCDC;
+  width:100%;
+  height:70%;
+}
+
+#newValuesContainer div {
+  width:100%;
+  display: flex;
+  justify-content: center;
+  height: 10%;
+
+}
+
+#valueName{
+  text-align: center
+  padding: 10px;
+
+}
+
+.valueInput {
+  padding: 15px;
+  height:30%;
+  width:100%;
+}
+
+.barValue {
+  width: 30%;
+}
+
+#valuesBtn {
+  color: green;
+  padding: 5px;
+}
+
+#masterControlsContainer {
+  background-color: white;
+  margin: 6%;
+}
+
+#masterControlsContainer h2 {
+  text-align: center;
+  padding: 2%;
+}
+
+#masterControlsContainer button {
+  padding: 5px;
+  margin: 4%;
+}
+
+
+#exportBtn {
+  color: blue;
+}
+
+#processBtn {
+  color: green;
+}
+
+#clearBtn {
+  color: red;
+}
+
