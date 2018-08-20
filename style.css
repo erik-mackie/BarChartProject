@@ -44,8 +44,6 @@ body {
   height:94%;
 }
 
-
-
 #graphContainer {
   width:80%;
   height:100%;
@@ -60,11 +58,15 @@ body {
   height: 6%;
   width: 100%;
   margin-top: 2%;
-  font-size: 20px;
   display:flex;
   align-items: center;
   justify-content: center;
 }
+
+#graphTitle {
+  font-size: 30px;
+}
+
 
 #graphInner {
   height: 75%;
@@ -90,7 +92,6 @@ body {
   display: table-cell;
   vertical-align: bottom;
   height: 200px;
-
 }
 
 .chart span {
@@ -99,6 +100,7 @@ body {
   background: rgba(209, 236, 250, .75);
   animation: draw 1s ease-in-out;
 }
+
 .chart span:before {
   position: absolute;
   left: 0;
@@ -110,6 +112,7 @@ body {
   content: attr(title);
   word-wrap: break-word;
 }
+
 @keyframes draw {
   0% {
     height: 0;
@@ -187,6 +190,16 @@ body {
   font-size: 15px;
 }
 
+.stackAdd {
+  color:black;
+  background-color:#b4fa84
+}
+
+.stackRemove {
+  color: black;
+  background-color:#C21807;
+}
+
 #controlsContainer {
   width:20%;
   height: 100%;
@@ -232,7 +245,7 @@ body {
   height: 25px;
 }
 
-.titleColour {
+#titleColour {
   float:right;
   margin-right:18%;
 }
@@ -240,7 +253,7 @@ body {
 #yAxisForm {
   padding: 10px;
 }
-#yAxisUnits {
+.yAxisUnits {
   padding: 5px;
 }
 
@@ -362,30 +375,53 @@ body {
   background-color: #DCDCDC;
   width:100%;
   height:70%;
+
 }
 
-#newValuesContainer div {
+#barNameContainer {
   width:100%;
-  display: flex;
-  justify-content: center;
   height: 10%;
 
 }
 
-#valueName{
+#barName{
   text-align: center
   padding: 10px;
+}
+
+#barInputContainer {
+  height: 90%;
+
 
 }
 
 .valueInput {
-  padding: 15px;
-  height:30%;
+  height:32%;
   width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exValueInput {
+  height:32%;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .barValue {
   width: 30%;
+}
+
+.barValueAdd {
+  color:green;
+}
+
+.barValueDelete {
+  color: black;
+  background-color:#C21807;
 }
 
 #valuesBtn {

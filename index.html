@@ -20,7 +20,7 @@
 <!--Graph -->
         <div id="graphContainer">
           <div id="titleSection">
-            <h1 id="graphTitle">A new Graph</h1>
+            <h3 id="graphTitle">A new Graph</h3>
           </div>
             <div id="graphInner">
               <ul class="chart">
@@ -53,18 +53,6 @@
         <!-- Stacked Value Index -->
         <div id="stackedIndexSection">
           <div id="stackedIndexContainer">
-            <div class="indexItem">
-              <div class="colourBox"></div>
-              <p>TheNameOftheValue</p>
-            </div>
-            <div class="indexItem">
-              <div class="colourBox"></div>
-              <p>TheNameOftheValue</p>
-            </div>
-            <div class="indexItem">
-              <div class="colourBox"></div>
-              <p>TheNameOftheValue</p>
-            </div>
           </div>
         </div>
       </div>
@@ -81,12 +69,12 @@
           <div id="titleSecContainer">
             <form>
               <select id="titleSize">
-                <option value="15">small</option>
-                <option value="20">Medium</option>
-                <option value="25">Large</option>
-                <option value="30">Extra Large</option>
+                <option value="30">Small</option>
+                <option value="35">Medium</option>
+                <option value="40">Large</option>
+                <option value="45">Extra Large</option>
               </select>
-              <input class="titleColour" type="color" name="favcolor" value="#ff0000">
+              <input id="titleColour" type="color" name="favcolor" value="#ff0000">
             </form>
           </div>
           <div id="titleControlsContainer">
@@ -101,25 +89,16 @@
           <div id="barTypesContainer">
             <ul id="stackTypes">
               <li class="stackValue">
-                <input class="typeInput" id="inpStacked1" type="text" placeholder="Stacked Value Type">
-                <input class="stackedColour" id="colStacked1" type="color" name="favcolor" value="#ff0000">
-                <button>add</button>
+                <input class="typeInput" type="text" placeholder="Stacked Value Type">
+                <input class="stackedColour" type="color" name="favcolor" value="#ff0000">
+                <button class="stackAdd">add</button>
               </li>
-              <li class="stackValue">
-                <input class="typeInput" id="inpStacked2" type="text" placeholder="Stacked Value Type">
-                <input class="stackedColour" id="colStacked2" type="color" name="favcolor" value="#ff0000">
-                <button>add</button>
-              </li>
-              <li class="stackValue">
-                <input class="typeInput" id="inpStacked3" type="text" placeholder="Stacked Value Type">
-                <input class="stackedColour" id="colStacked3" type="color" name="favcolor" value="#ff0000">
-                <button>add</button>
-              </li>
+
             </ul>
           </div>
           <div id="yAxisForm">
             <form class="w3-container">
-              <input id="yAxisUnits" type="number" placeholder="Y Axis Units Max">
+              <input class="yAxisUnits" type="number" placeholder="Y Axis Units Max">
             </form>
           </div>
           <div id="controlsContainer1">
@@ -151,26 +130,19 @@
               </div>
             </div>
           <div id="newValuesContainer">
-            <div>
-              <input id="valueName" type="text" placeholder="Value Name">
+            <div id="barNameContainer">
+              <input id="barName" type="text" placeholder="Bar Name">
             </div>
-            <div class="valueInput">
-              <input class="barValue" type="number" placeholder="Section Value">
-              <select name="barValueType">
-                  <option value="bottom">option 1</option>
-                  <option value="middle">option 2</option>
-                  <option value="top">option 3</option>
-                </select>
-                <button class="value control">add</button>
-            </div>
-            <div class="valueInput">
-              <input class="barValue" type="number" placeholder="Section Value">
-              <select name="barValueType">
-                  <option value="bottom">option 1</option>
-                  <option value="middle">option 2</option>
-                  <option value="top">option 3</option>
-                </select>
-                <button class="value control">add</button>
+            <div id="barInputContainer">
+              <div class="valueInput">
+                <input class="barValue" type="number" placeholder="Section Value">
+                <select name="barValueType">
+                    <option value="bottom">option 1</option>
+                    <option value="middle">option 2</option>
+                    <option value="top">option 3</option>
+                  </select>
+                  <button class="barValueAdd">add</button>
+              </div>
             </div>
 
         </div>
