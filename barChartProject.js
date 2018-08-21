@@ -1,8 +1,6 @@
-var stackOptions = [{name: "Javascript", value: "Javascript",
-                    {name:"HTML", value: "HTML"}
-                    ];
-console.log(stackOptions)
+var stackOptions = [];
 
+//Title Color controls
 //Title Color controls
 //Title Color controls
 
@@ -24,20 +22,34 @@ $("#titleColour").change(function() {
 
 //Bar and Graph Controls
 //Bar and Graph Controls
+//Bar and Graph Controls
+
+//populate bar stack options list from objects
+function populateValueChoices() {
+      var barValueOptions = $(".barValueType");
+      barValueOptions.empty();
+      //loop onject and apply key value pairs to choices list
+      stackOptions.map(val => {
+        barValueOptions.append($("<option></option>")
+         .attr("value", val['color']).text(val['text']));
+      });
+}
 
 //take input from each stacked value, and append to index upon add click
   $(document).on('click','.stackAdd', function() {
       let stackValue = $(this).closest('.stackValue').children('.typeInput').val();
       let stackColor = $(this).closest('.stackValue').children('.stackedColour').val();
       //append custom div to index as build from inputs
-      $(`<div class="indexItem">
+      $(
+        `<div class="indexItem">
           <div class="colourBox" style="background-color:${stackColor}":></div>
           <p>${stackValue}</p>
-        </div>`).appendTo("#stackedIndexContainer");
-      // push to array for use by "new bar" later
-      stackOptions.push({name:`${stackValue}`,
-                         value: `${stackValue}`})
+        </div>`).appendTo("#stackedIndexContainer"
+        );
 
+      // push to array for use by "new bar" later
+      stackOptions.push({text:`${stackValue}`,
+                         color:`${stackColor}`})
 
       //on add click, change to remove button and add new input row
       $(".stackValue").clone().appendTo("#stackTypes").find("input[type='text']").val("").find("input[type='color']").val("");
@@ -48,6 +60,7 @@ $("#titleColour").change(function() {
       if ($('#stackedIndexContainer').children().length >= 3) {
         $(".stackValue").hide();
         }
+      populateValueChoices();
     })
 
 // close button remove input row and deletes index entry
@@ -58,6 +71,12 @@ $(document).on('click','.stackRemove', function() {
   $(`.indexItem:contains(${indexName})`).remove();
   //if stack row was deleted, show new input.
   $(".stackValue").show();
+  //find corrispoding onject in array and remove
+  stackOptions = stackOptions.filter(function(item) {
+    return item['text'] !== indexName;
+  });
+
+  populateValueChoices();
 })
 
 //change Y axis values from input
@@ -75,17 +94,10 @@ $(".yAxisUnits").keyup(function() {
 
 //Add Bar Controls
 //Add Bar Controls
-
-var barValuesArr = [];
-//get text from input
-$(".barName").keyup(function() {
-    let value = $(this).val();
-    /*$("#graphTitle").text(value);*/
-    //on add button, clear text field and pull info into array
-  }).keyup();
-
-//populate bar stack options list from array
-
+//Add Bar Controls
+var barValuesArr = [ ["Javascript",[10, "red"], [20, "blue"], [30, "green"]],
+                     ["Python",[20, "red"], [30, "blue"], [40, "green"]]
+                     ];
 
 ////on add click, change to remove button and add new input row
 $(document).on('click','.barValueAdd', function() {
@@ -107,22 +119,90 @@ $(document).on('click','.barValueDelete', function() {
   $(".valueInput").show();
 })
 
+// loop over barArray and populate dropdown list + add delete button
+function populateDropDown() {
+  $( ".dropdown-content" ).empty();
+  barValuesArr.map(val => {
+    $(
+          `<div class="existingBarValue">
+            <p class="dropDownName">${val[0]}</p>
+            <button class="barDelete">X</button>
+          </div>`).appendTo(".dropdown-content");
+  })
+}
+
+// take data from input and push into array on add click
+$(document).on('click','#valuesBtn', function() {
+  let tempArr = [];
+  //get text from input and send to array item
+  tempArr.push($("#barName").val());
+  let inputs = $(".exValueInput");
+  //loop each input row and pull input data and send to array
+  inputs.each(function() {
+    tempArr.push([$(this).children(".barValue").val(),
+                       $(this).children(".barValueType").val()
+                       ]);
+    })
+  // uncomment this once graph testing is finished
+  // uncomment this once graph testing is finished
+  // uncomment this once graph testing is finished
+  //barValuesArr.push(tempArr);
+  tempArr = [];
+  //empty dropdown with each click
+  populateDropDown();
+  drawBarchart();
+})
+
+// bar delete button removes entry drop dropdown, from array and re-runs graph build function
+$(document).on('click','.barDelete', function() {
+  let barName = $(this).closest('.existingBarValue').children('.dropDownName').text();
+  console.log(barName)
+  // remove from array and repopulate
+  barValuesArr = barValuesArr.filter(function(val) {
+   return val[0] != barName;
+  })
+  populateDropDown();
+})
+
+//["Javascript",[10, "red"], [20, "blue"], [30, "green"]]
+//build bar chart from array of values
+function drawBarchart() {
+  barValuesArr.map(val => {
+    $(
+          `<li>
+              <div class="barContainer" title="${val[0]}" >
+                <div class="bar" style="color:${val[1][1]}; height:${val[1][0]}%"><p>${val[1][0]}</p></div>
+                <div class="bar" style="color:${val[2][1]}; height:${val[2][0]}%"><p>${val[2][0]}</p></div>
+                <div class="bar" style="color:${val[3][1]}; height:${val[3][0]}%"><p>${val[3][0]}</p></div>
+              </div>
+          </li>`).appendTo(".chart");
+          // create html item
+          /*`<li>
+              <div class="barContainer" title="${val[0]}">
+                <div class="value1"><p></p></div>
+                <div class="value2"><p></p></div>
+                <div class="value3"><p></p></div>
+              </div>
+          </li>`).appendTo(".chart");
+
+    //first value
+    $(".value1").css*/
+  })
+}
 
 
-/*drawBarChart(data, options, element);*/
 
 
 
 
 
-// time on project 3h 2h  3h 3h 2.5h 3h 2h 3h 3h
+// time on project 3h 2h  3h 3h 2.5h 3h 2h 3h 3h mon 3h 2h tues 3h 1h
 
 
 
 //to do
 
 // ***********make resuable functions for duplicate code for stack values and inputs
-
-
-
+// bar value click without input pushes empty array into  array. fix this.
+//successive clicks of bar values add adds more even if no inputs are selected
 

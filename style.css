@@ -90,18 +90,23 @@ body {
 .chart li {
   position: relative;
   display: table-cell;
-  vertical-align: bottom;
-  height: 200px;
+
+
 }
 
-.chart span {
+.barContainer {
+  height: 100%;
+  vertical-align: bottom;
+}
+
+.bar {
   margin: 0 1em;
   display: block;
   background: rgba(209, 236, 250, .75);
   animation: draw 1s ease-in-out;
 }
 
-.chart span:before {
+.bar:before {
   position: absolute;
   left: 0;
   right: 0;
@@ -342,7 +347,7 @@ body {
 
 
 .dropdown-content {
-    display: none;
+    /*display: none;*/
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
@@ -351,15 +356,15 @@ body {
 }
 
 /* Links inside the dropdown */
-.dropdown-content a {
+.dropdown-content p {
     color: black;
-    padding: 12px 16px;
+    padding: 5px 5px;
     text-decoration: none;
     display: block;
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content p:hover {background-color: #f1f1f1}
 
 
 .existingDropdown:hover .dropdown-content {
@@ -371,6 +376,16 @@ body {
     background-color: #3e8e41;
 }
 
+.existingBarValue {
+  width: 100%;
+  height:40px;
+}
+
+.barDelete {
+  height: 20px;
+  width:20px;
+  color: red;
+}
 #newValuesContainer {
   background-color: #DCDCDC;
   width:100%;
