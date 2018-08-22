@@ -96,7 +96,9 @@ $(".yAxisUnits").keyup(function() {
 //Add Bar Controls
 //Add Bar Controls
 var barValuesArr = [ ["Javascript",[10, "red"], [20, "blue"], [30, "green"]],
-                     ["Python",[20, "red"], [30, "blue"], [40, "green"]]
+                     ["C++",[10, "red"], [15, "blue"], [20, "green"]],
+                     ["Apashe",[20, "red"], [30, "blue"], [40, "green"]],
+                     ["Python",[40, "red"], [40, "blue"], [20, "green"]]
                      ];
 
 ////on add click, change to remove button and add new input row
@@ -169,12 +171,12 @@ $(document).on('click','.barDelete', function() {
 function drawBarchart() {
   barValuesArr.map(val => {
     $(
-          `<li>
-              <div class="barContainer" title="${val[0]}" >
-                <div class="bar" style="color:${val[1][1]}; height:${val[1][0]}%"><p>${val[1][0]}</p></div>
-                <div class="bar" style="color:${val[2][1]}; height:${val[2][0]}%"><p>${val[2][0]}</p></div>
-                <div class="bar" style="color:${val[3][1]}; height:${val[3][0]}%"><p>${val[3][0]}</p></div>
-              </div>
+          `<li class="barContainer" title="${val[0]}" >
+                <div class="bar" style="background-color:${val[3][1]}; height:${val[3][0]}%"><p>${val[3][0]}</p></div>
+                <div class="bar" style="background-color:${val[2][1]}; height:${val[2][0]}%"><p>${val[2][0]}</p></div>
+                <div class="bar" style="background-color:${val[1][1]}; height:${val[1][0]}%"><p>${val[1][0]}</p></div>
+
+
           </li>`).appendTo(".chart");
           // create html item
           /*`<li>
@@ -191,7 +193,8 @@ function drawBarchart() {
 }
 
 
-
+//left off with bar animations, adding, and transtion from bottom not top. Fixig bar title
+//because it went away upon changing containers
 
 
 

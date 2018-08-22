@@ -90,23 +90,14 @@ body {
 .chart li {
   position: relative;
   display: table-cell;
-
-
-}
-
-.barContainer {
-  height: 100%;
   vertical-align: bottom;
 }
 
-.bar {
-  margin: 0 1em;
-  display: block;
-  background: rgba(209, 236, 250, .75);
-  animation: draw 1s ease-in-out;
-}
+.barContainer {
+  height:100%;
 
-.bar:before {
+}
+.barContainer:before {
   position: absolute;
   left: 0;
   right: 0;
@@ -116,6 +107,20 @@ body {
   text-align: center;
   content: attr(title);
   word-wrap: break-word;
+}
+
+.bar {
+  margin: 0 1em;
+  background: rgba(209, 236, 250, .75);
+  animation: draw 1s ease-in-out;
+}
+
+.bar p {
+  font-size: 15px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
 @keyframes draw {
