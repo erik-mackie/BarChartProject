@@ -80,26 +80,55 @@ $(document).on('click','.stackRemove', function() {
 })
 
 //change Y axis values from input
-$(".yAxisUnits").keyup(function() {
+var yAxisValue = 0;
+$(".yAxisUnits").change(function() {
     // get ticks and value
-    let value = $(this).val();
+    yAxisValue = $(this).val();
     let ticks = $(".tick").children("p");
     // apply values to ticks
     var percentTotal = 1;
     ticks.each(function() {
-      $(this).text(value * percentTotal.toFixed(2));
+      $(this).text(yAxisValue * percentTotal.toFixed(2));
       percentTotal -= .2;
     })
+    return yAxisValue;
 }).keyup();
+
+//bar graph value spacing
+//bar spacing less
+$(function() {
+    $('#lessSpace').click(function () {
+       $(".bar").css({'margin-left': '-=.1em','margin-right': '-=.1em'});
+    });
+});
+//bar spacing more
+$("#moreSpace").click(function() {
+  $(".bar").css({'margin-left': '+=.1em','margin-right': '+=.1em'});
+})
+
+//bar values location
+$(document).on('change','#barValueLocation', function() {
+  let changeValue = $('#barValueLocation').val();
+  let values = $(".bar").children("p");
+  // change css of values dependant on dropdown selection
+  if ( changeValue == "bottom" ) {
+    $(values).removeClass("valMdl").removeClass('valTop').addClass('valBtm')
+  } else if (changeValue == "middle") {
+    $(values).removeClass("valBtm").removeClass('valTop').addClass('valMdl')
+  } else if (changeValue == "top") {
+    $(values).removeClass("valBtm").removeClass('valMdl').addClass('valTop')
+  } else {
+    $(values).css({'visibility': 'hidden'});
+  }
+});
+
+
 
 //Add Bar Controls
 //Add Bar Controls
 //Add Bar Controls
-var barValuesArr = [ ["Javascript",[10, "red"], [20, "blue"], [30, "green"]],
-                     ["C++",[10, "red"], [15, "blue"], [20, "green"]],
-                     ["Apashe",[20, "red"], [30, "blue"], [40, "green"]],
-                     ["Python",[40, "red"], [40, "blue"], [20, "green"]]
-                     ];
+
+var barValuesArr = [];
 
 ////on add click, change to remove button and add new input row
 $(document).on('click','.barValueAdd', function() {
@@ -133,79 +162,124 @@ function populateDropDown() {
   })
 }
 
+// bar add button
 // take data from input and push into array on add click
+
 $(document).on('click','#valuesBtn', function() {
-  let tempArr = [];
-  //get text from input and send to array item
-  tempArr.push($("#barName").val());
-  let inputs = $(".exValueInput");
-  //loop each input row and pull input data and send to array
-  inputs.each(function() {
-    tempArr.push([$(this).children(".barValue").val(),
-                       $(this).children(".barValueType").val()
-                       ]);
+  if ($("#barName").val() == "" || $(".barValue").val() == 0) {
+  alert("You must have one named value before submitting")
+  } else {
+    let tempArr = [];
+    //get text from input and send to array item
+    tempArr.push($("#barName").val());
+    let inputs = $(".exValueInput");
+    //loop each input row and pull input data and send to array
+    inputs.each(function() {
+      tempArr.push([$(this).children(".barValue").val(),
+                   $(this).children(".barValueType").val()
+                   ]);
     })
-  // uncomment this once graph testing is finished
-  // uncomment this once graph testing is finished
-  // uncomment this once graph testing is finished
-  //barValuesArr.push(tempArr);
-  tempArr = [];
-  //empty dropdown with each click
-  populateDropDown();
-  drawBarchart();
+    // clear inputs on click
+    $(".barValue").val("")
+    $("#barName").val("")
+
+    barValuesArr.push(tempArr);
+    tempArr = [];
+    //empty dropdown with each click
+      populateDropDown();
+      drawBarchart();
+  }
 })
+
 
 // bar delete button removes entry drop dropdown, from array and re-runs graph build function
 $(document).on('click','.barDelete', function() {
   let barName = $(this).closest('.existingBarValue').children('.dropDownName').text();
-  console.log(barName)
   // remove from array and repopulate
   barValuesArr = barValuesArr.filter(function(val) {
    return val[0] != barName;
+   console.log(barValuesArr);
   })
   populateDropDown();
+  drawBarchart();
 })
 
-//["Javascript",[10, "red"], [20, "blue"], [30, "green"]]
 //build bar chart from array of values
 function drawBarchart() {
-  barValuesArr.map(val => {
-    $(
-          `<li class="barContainer" title="${val[0]}" >
-                <div class="bar" style="background-color:${val[3][1]}; height:${val[3][0]}%"><p>${val[3][0]}</p></div>
-                <div class="bar" style="background-color:${val[2][1]}; height:${val[2][0]}%"><p>${val[2][0]}</p></div>
-                <div class="bar" style="background-color:${val[1][1]}; height:${val[1][0]}%"><p>${val[1][0]}</p></div>
+  $(".chart").empty();
+  if (yAxisValue == 0) {
+    alert("Please Enter A Y axis value");
+    return
+  } else {
+    // loop of array and inject HTML into chart
+    barValuesArr.map(val => {
+      console.log(barValuesArr);
+      var barheight1 = (val[1][0] / yAxisValue) * 100;
+      var barColor1 = val[1][1];
+      var barP1 = val[1][0];
 
+      // if only one stacked value was passed. Injectable HTML still works
+      if (typeof val[2] !== 'undefined') {
+        var barheight2 = (val[2][0] / yAxisValue) * 100;
+        var barColor2 = val[2][1];
+        var barP2 = val[2][0];
+      }else {
+        var barheight2 = 0;
+        var barColor2 = "transparent";
+        var barP2 = "";
+      }
+      if (typeof val[3] !== 'undefined') {
 
-          </li>`).appendTo(".chart");
-          // create html item
-          /*`<li>
-              <div class="barContainer" title="${val[0]}">
-                <div class="value1"><p></p></div>
-                <div class="value2"><p></p></div>
-                <div class="value3"><p></p></div>
-              </div>
-          </li>`).appendTo(".chart");
+        var barheight3 = (val[3][0] / yAxisValue) * 100;
+        var barColor3 = val[3][1];
+        var barP3 = val[3][0];
+      }else {
+        var barheight3 = 0;
+        var barColor3 = "transparent";
+        var barP3 = "";
+      }
 
-    //first value
-    $(".value1").css*/
-  })
+      $(
+            `<li class="barContainer" title="${val[0]}">
+                  <div class="bar" style="background-color:${barColor3}; height:${barheight3}%"><p class="barVal">${barP3}</p></div>
+                  <div class="bar" style="background-color:${barColor2}; height:${barheight2}%"><p class="barVal">${barP2}</p></div>
+                  <div class="bar" style="background-color:${barColor1}; height:${barheight1}%"><p class="barVal">${barP1}</p></div>
+            </li>`).appendTo(".chart");
+
+    })
+  }
 }
 
+//Page Master Section
+//Page Master Section
 
-//left off with bar animations, adding, and transtion from bottom not top. Fixig bar title
-//because it went away upon changing containers
+//Export Graph as image
+/*var domtoimage = require('dom-to-image');
+
+domtoimage.toJpeg($('.exportBtn'), { quality: 0.95 })
+    .then(function (dataUrl) {
+        var link = document.createElement('a');
+        link.download = 'my-image-name.jpeg';
+        link.href = dataUrl;
+        link.click();
+    });*/
 
 
+//Clear all inputs and graph
+$("#clearBtn").click(function() {
+  window.location.reload();
+})
 
 
-// time on project 3h 2h  3h 3h 2.5h 3h 2h 3h 3h mon 3h 2h tues 3h 1h
+// time on project 3h 2h  3h 3h 2.5h 3h 2h 3h 3h mon 3h 2h tues 3h 1h 3h 3h
 
-
+//left off trying to get image to pdf working
 
 //to do
 
 // ***********make resuable functions for duplicate code for stack values and inputs
-// bar value click without input pushes empty array into  array. fix this.
-//successive clicks of bar values add adds more even if no inputs are selected
+// margin less can collapse divs into eachother. set minumum limit
+// If you  only add 2 values, error thrown
 
+
+// delete button on dropdown deletes graph item

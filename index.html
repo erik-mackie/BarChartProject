@@ -8,7 +8,9 @@
     <meta name="author" content="Erik Mackie">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="fonts.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="require.js"></script>
   </head>
 
   <body>
@@ -24,6 +26,11 @@
           </div>
             <div id="graphInner">
               <ul class="chart">
+                <!-- <li class="barContainer" title="first">
+                  <div class="bar" style="background-color:red; height:10%"><p class="barVal">10</p></div>
+                  <div class="bar" style="background-color:blue; height:20%"><p class="barVal">20</p></div>
+                  <div class="bar" style="background-color:green; height:30%"><p class="barVal">30</p></div>
+              </li> -->
               </ul>
 
               <div class="gridContainer">
@@ -64,7 +71,6 @@
             </form>
           </div>
           <div id="titleControlsContainer">
-            <!-- <button id="titleAdd">Add</button> -->
           </div>
         </div>
 
@@ -96,11 +102,12 @@
 
             <div id="valueLocationContainer">
               <h3>Bar Value Location</h3>
-              <select name="barValueLocation">
-                  <option value="bottom">Bottom</option>
-                  <option value="middle">Middle</option>
-                  <option value="top">Top</option>
-                </select>
+              <select id="barValueLocation">
+                <option ></option>
+                <option value="bottom">Bottom</option>
+                <option value="middle">Middle</option>
+                <option value="top">Top</option>
+              </select>
             </div>
           </div>
 
@@ -112,7 +119,6 @@
           <div class="existingDropdown">
               <button class="dropbtn">Current Bars</button>
               <div class="dropdown-content">
-                <a href="#">Test Value</a>
               </div>
             </div>
           <div id="newValuesContainer">
@@ -127,15 +133,14 @@
               </div>
             </div>
 
-        </div>
+          </div>
           <button id="valuesBtn">Add</button>
         </div>
 <!-- Process Page -->
         <div id="masterControlsContainer">
-          <h2>Master Controls</h2>
+          <h2>Page Master</h2>
           <div id="masterContainer">
             <button id="exportBtn">Export</button>
-            <button id="processBtn">Process</button>
             <button id="clearBtn">Clear</button>
           </div>
         </div>
